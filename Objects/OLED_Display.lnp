@@ -1,5 +1,8 @@
 --cpu Cortex-M0+
 ".\objects\main.o"
+".\objects\gpio.o"
+".\objects\i2c_2.o"
+".\objects\system_rcc.o"
 ".\objects\startup_stm32g030xx.o"
 ".\objects\system_stm32g0xx.o"
 --strict --scatter ".\Objects\OLED_Display.sct"

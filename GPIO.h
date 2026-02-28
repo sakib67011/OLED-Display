@@ -5,8 +5,6 @@
 
 #include "stm32g030xx.h"
 
-/*-------------------GPIO RCC CONFIGURE START-----------------*/
-
 typedef enum
 
 { GPIO_A, 
@@ -18,106 +16,8 @@ typedef enum
 
 } GPIO_X;
 
-void GPIO_RCC_CONFIGURE(GPIO_X PORT)
+void GPIO_RCC_CONFIGURE(GPIO_X PORT);
 
-{
-	RCC ->IOPENR |= (1 << PORT);
-
-}
-
-/*-------------------GPIO RCC CONFIGURE END-----------------*/
-
-/*-------------------GPIO CONFIGURE START-----------------*/
-
-void GPIO_CONFIGURE(void)
-
-{
-
-/*------------------------ GPIO MODE SET ---------------------*/
-
-	/*GPIOA ->MODER &= ~(GPIO_MODER_MODE0);	//--------CLEAR ALL MODE
-
-	GPIOA ->MODER &= ~(GPIO_MODER_MODE1);
-
-
-
-	GPIOA ->MODER |=(GPIO_MODER_MODE0_0);	//--------SET AS OUTPUT
-
-	GPIOA ->MODER |=(GPIO_MODER_MODE1_0);
-
-
-
-
-
-	GPIOA->OSPEEDR &=~(GPIO_OSPEEDR_OSPEED0); //-------CLEAR BIT GPIO AS HIGH SPEED PA0
-
-	GPIOA->OSPEEDR &=~(GPIO_OSPEEDR_OSPEED1); //-------CLEAR BIT GPIO AS HIGH SPEED PA1
-
-
-
-	GPIOA->OSPEEDR |=GPIO_OSPEEDR_OSPEED0_1; //-------SET GPIO AS HIGH SPEED PA0
-
-	GPIOA->OSPEEDR |=GPIO_OSPEEDR_OSPEED1_1; //-------SET GPIO AS HIGH SPEED PA1*/
-
-/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-	GPIOA ->MODER &= ~(GPIO_MODER_MODE11);	//--------CLEAR ALL MODE
-
-	GPIOA ->MODER &= ~(GPIO_MODER_MODE12);
-
-
-
-
-
-	GPIOA ->MODER |= GPIO_MODER_MODE11_1;	//-----------SET MODE AS ALTERNATE FUNCTION FOR I2C
-
-	GPIOA ->MODER |= GPIO_MODER_MODE12_1; 
-
-
-
-	GPIOA->OTYPER &=~(GPIO_OTYPER_OT11); //---------------CLEAR BIT OPEN DRAIN PA11
-
-	GPIOA->OTYPER &=~(GPIO_OTYPER_OT12); //---------------CLEAR BIT OPEN DRAIN PA12
-
-
-
-	GPIOA->OTYPER |=GPIO_OTYPER_OT11; //---------------SET AS OPEN DRAIN PA11
-
-	GPIOA->OTYPER |=GPIO_OTYPER_OT12; //---------------SET AS OPEN DRAIN PA12
-
-
-
-	GPIOA->OSPEEDR &=~(GPIO_OSPEEDR_OSPEED11); //-------CLEAR BIT GPIO AS HIGH SPEED PA11
-
-	GPIOA->OSPEEDR &=~(GPIO_OSPEEDR_OSPEED12); //-------CLEAR BIT GPIO AS HIGH SPEED PA12
-
-
-
-	GPIOA->OSPEEDR |=GPIO_OSPEEDR_OSPEED11_1; //-------SET GPIO AS HIGH SPEED PA11
-
-	GPIOA->OSPEEDR |=GPIO_OSPEEDR_OSPEED12_1; //-------SET GPIO AS HIGH SPEED PA12
-
-
-
-
-
-	GPIOA->AFR[1] &= ~GPIO_AFRH_AFSEL11; //------------CLEAR BIT GPIO ALTERNATE PA11
-
-	GPIOA->AFR[1] &= ~GPIO_AFRH_AFSEL12; //------------CLEAR BIT GPIO ALTERNATE PA12
-
-
-
-	GPIOA->AFR[1] |= GPIO_AFRH_AFSEL11_1; //------------SET GPIO ALTERNATE PA11
-
-	GPIOA->AFR[1] |= GPIO_AFRH_AFSEL11_2; //------------SET GPIO ALTERNATE PA11
-
-	GPIOA->AFR[1] |= GPIO_AFRH_AFSEL12_1; //------------SET GPIO ALTERNATE PA12
-
-	GPIOA->AFR[1] |= GPIO_AFRH_AFSEL12_2; //------------SET GPIO ALTERNATE PA12
-
-}
-
-/*-------------------GPIO CONFIGURE END-----------------*/
 
 #endif
 
