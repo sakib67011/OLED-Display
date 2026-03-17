@@ -18,6 +18,8 @@ typedef enum
 
 void GPIO_RCC_CONFIGURE(GPIO_X PORT);
 
+void GPIO_CONFIGURE(void);
+
 
 #endif
 

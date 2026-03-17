@@ -65,7 +65,9 @@ void I2C_2_CONFIGURE()
 
 /*-------------------I2C WRITE START--------------------------*/
 
-void I2C_WRITE(uint8_t I2C_DATA_SEND)
+void I2C2_WRITE_CMD(uint8_t I2C_CMD_SEND)
+
+
 
 {
 	//---CHECKING I2C BUSY or NOT
@@ -91,18 +93,95 @@ void I2C_WRITE(uint8_t I2C_DATA_SEND)
 	//---NUMBER OF BYTE
 	
 	I2C2->CR2 &=~ I2C_CR2_NBYTES_Msk;
-	I2C2->CR2 |= (1<< I2C_CR2_NBYTES_Pos);
+	I2C2->CR2 |= (2<< I2C_CR2_NBYTES_Pos);
 	
 	//---I2C START
 	
 	I2C2->CR2 &=~ I2C_CR2_START_Msk;
-	I2C2->CR2 |= (1<< I2C_CR2_START_Pos);
+	I2C2->CR2 |= I2C_CR2_START;
 	
 	//---TRANSFER BUFFER EMPTY CHECK
 	
 	while(!(I2C2->ISR & I2C_ISR_TXIS));
 	
-	//---DATA TRANSFERING
+	//---DATA TRANSFERING >>> CONTROL BYTE_CMD
+	
+	I2C2->TXDR = 0x00;
+	
+		//---TRANSFER BUFFER EMPTY CHECK
+	
+	while(!(I2C2->ISR & I2C_ISR_TXIS));
+	
+	//---DATA TRANSFERING >>> COMMAND BYTE
+	
+	I2C2->TXDR = I2C_CMD_SEND;
+	
+	//---CHECK TRANSFER COMPLETE
+	
+	while(!(I2C2->ISR & I2C_ISR_TC));
+	
+	//---I2C STOP
+	
+	I2C2->CR2 |= I2C_CR2_STOP;
+	
+	//---CHECK STOP FLAG
+	
+	while(!(I2C2->ISR & I2C_ISR_STOPF));
+	
+	//--- CLEAR STOP FLAG
+	
+	I2C2->ICR  = I2C_ICR_STOPCF;
+
+}
+
+
+
+void I2C2_WRITE_DATA(uint8_t I2C_DATA_SEND)
+
+{
+	//---CHECKING I2C BUSY or NOT
+	
+	while((I2C2->ISR & I2C_ISR_BUSY));
+	
+	//---CLEAR CR2
+	
+	I2C2->CR2 = 0;
+	
+	//---7-BIT ADDRESSING MODE
+	
+	I2C2->CR2 &=~ I2C_CR2_ADD10_Msk;
+	
+	//---7-BIT SLAVE ADDRESS ASSIGNED
+	
+	I2C2->CR2 |= (0x3C << 1);
+	
+	//---I2C WRITE CONFIGURE
+	
+	I2C2->CR2 &= ~I2C_CR2_RD_WRN_Msk;
+	
+	//---NUMBER OF BYTE
+	
+	I2C2->CR2 &=~ I2C_CR2_NBYTES_Msk;
+	I2C2->CR2 |= (2<< I2C_CR2_NBYTES_Pos);
+	
+	//---I2C START
+	
+	I2C2->CR2 &=~ I2C_CR2_START_Msk;
+	I2C2->CR2 |= I2C_CR2_START;
+	
+	//---TRANSFER BUFFER EMPTY CHECK
+	
+	while(!(I2C2->ISR & I2C_ISR_TXIS));
+	
+	//---DATA TRANSFERING >>> CONTROL BYTE_DATA
+	
+	I2C2->TXDR = 0x40;
+	
+		//---TRANSFER BUFFER EMPTY CHECK
+	
+	while(!(I2C2->ISR & I2C_ISR_TXIS));
+	
+	//---DATA TRANSFERING >>> COMMAND BYTE
 	
 	I2C2->TXDR = I2C_DATA_SEND;
 	
@@ -112,7 +191,7 @@ void I2C_WRITE(uint8_t I2C_DATA_SEND)
 	
 	//---I2C STOP
 	
-	I2C2->CR2 |= (1<< I2C_CR2_STOP_Pos);
+	I2C2->CR2 |= I2C_CR2_STOP;
 	
 	//---CHECK STOP FLAG
 	
@@ -121,8 +200,10 @@ void I2C_WRITE(uint8_t I2C_DATA_SEND)
 	//--- CLEAR STOP FLAG
 	
 	I2C2->ICR  = I2C_ICR_STOPCF;
-	
+
 }
+
+
 
 
 /*-------------------I2C WRITE END--------------------------*/

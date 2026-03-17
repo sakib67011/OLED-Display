@@ -8,6 +8,8 @@ void I2C_2_RCC_CONFIGURE();
 void I2C_2_CONFIGURE();
 
 
-void I2C_WRITE(uint8_t I2C_DATA_SEND);
+void I2C2_WRITE_CMD(uint8_t I2C_CMD_SEND);
+void I2C2_WRITE_DATA(uint8_t I2C_DATA_SEND);
+
 
 #endif
