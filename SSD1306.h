@@ -4,38 +4,73 @@
 
 #include "stm32g030xx.h"
 
-/*DEFINE COMMAND*/
-typedef enum 
+
+typedef enum {
+	
+	OLED_SET_CHARGE_PUMP_SETTING 	= 0x8D,
+	OLED_SET_CHARGE_PUMP_ENABLE 		= 0x14,
+	OLED_SET_CHARGE_PUMP_DISABLE 	= 0x10,
+	
+	
+	OLED_SET_CONTRAST        			= 0x81,
+	OLED_SET_CONTRAST_MIN    			= 0x00,
+	OLED_SET_CONTRAST_RESET  			= 0x7F,
+	OLED_SET_CONTRAST_MAX    			= 0xFF,
+	OLED_SET_DISPLAY_RAM     			= 0xA4,   // X0 	= 0b (RESET)
+	OLED_SET_ENTIRE_DISPLAY_ON  	= 0xA5,   // X0 	= 1b
+	OLED_SET_NORMAL_DISPLAY  			= 0xA6,   // X[0] = 0b (RESET)
+	OLED_SET_INVERSE_DISPLAY 			= 0xA7,   // X[0] = 1b
+	OLED_SET_DISPLAY_OFF     			= 0xAE,   // X[0] = 0b, sleep (RESET)
+	OLED_SET_DISPLAY_ON      			= 0xAF,   // X[0] = 1b, normal
+	
+} OLED_FUN_CMD_X;
+
+void OLED_FUN_CMD(OLED_FUN_CMD_X FUN_CMD_X);
+
+//////////////////////////////////////////////
+
+
+typedef enum
 {
-	/* 1. Set Contrast Control (Double Byte Command) */
-  SET_CONTRAST         = 0x81, // Followed by 0x00 to 0xFF (Default 0x7F)
-
-  /* 2. Entire Display ON (A4h or A5h) */
-  SET_RESUME_RAM_CONTENT   = 0xA4, // Output follows RAM content (RESET)
-  SET_ENTIRE_DISPLAY_ON    = 0xA5, // Output ignores RAM (All pixels ON)
-
-  /* 3. Set Normal/Inverse Display (A6h or A7h) */
-  SET_NORMAL_DISPLAY   = 0xA6, // 0 in RAM: OFF, 1 in RAM: ON (RESET)
-  SET_INVERSE_DISPLAY  = 0xA7, // 0 in RAM: ON, 1 in RAM: OFF
-
-  /* 4. Set Display ON/OFF (AEh or AFh) */
-  SET_DISPLAY_OFF      = 0xAE, // Sleep mode (RESET)
-  SET_DISPLAY_ON       = 0xAF, // Normal mode
+	OLED_SET_MEMORY_ADDRESSING_MODE 		= 0x20,
+	OLED_SET_COLUMN_ADDRESSING_MODE 		= 0x21,
+	OLED_SET_PAGE_ADDRESSING_MODE 			= 0x22,
 	
-	/* 5. Charge Pump Setting (Double Byte Command) */
-  SET_CHARGE_PUMP_SETTING  = 0x8D, // Command to start Charge Pump configuration
-  SET_CHARGE_PUMP_DISABLE  = 0x10, // Disable Charge Pump (RESET state)
-  SET_CHARGE_PUMP_ENABLE   = 0x14  // Enable Charge Pump (Required to see anything!
+
+} OLED_ADDRESSING_CMD_X;
+
+void OLED_ADDRESSING_CMD(OLED_ADDRESSING_CMD_X ADDR_CMD_X);
+
+
+//////////////////////////////////////////////////////////
+
+typedef enum
+{
+	OLED_SET_HORIZONTAL_ADDRESSING_DATA 	= 0x00,
+	OLED_SET_VERTICAL_ADDRESSING_DATA 		= 0x01,
+	OLED_SET_PAGE_ADDRESSING_DATA					= 0x02,
 	
-	
-} OLED_CMD_X;
 
+} OLED_ADDRESSING_CMD_DATA_X;
 
+void OLED_ADDRESSING_CMD_DATA(OLED_ADDRESSING_CMD_DATA_X ADDR_DATA_X);
 
-void OLED_COMMAND(OLED_CMD_X OLED_CMD);
+//////////////////////////////////////////////////////////////////
 
-void OLED_INIT();
+typedef enum
+{
+    OLED_SET_PAGE_0 = 0xB0,
+    OLED_SET_PAGE_1,
+    OLED_SET_PAGE_2,
+    OLED_SET_PAGE_3,
+    OLED_SET_PAGE_4,
+    OLED_SET_PAGE_5,
+    OLED_SET_PAGE_6,
+    OLED_SET_PAGE_7
 
+} OLED_PAGE_X;
+
+void OLED_STARTING_PAGE(OLED_PAGE_X PAGE_X);
 
 
 
