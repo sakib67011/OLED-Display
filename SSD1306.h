@@ -72,6 +72,9 @@ typedef enum
 
 void OLED_STARTING_PAGE(OLED_PAGE_X PAGE_X);
 
+void OLED_SET_COURSOR(uint8_t X, uint8_t Y);
+
+void OLED_DISPLAY_CLEAR(void);
 
 
 #endif

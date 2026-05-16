@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\Objects\OLED_Display.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\OLED_Display.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Thu May 14 09:21:15 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6230001: Last Updated: Fri May 15 15:27:24 2026
 <BR><P>
-<H3>Maximum Stack Usage =         72 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =         64 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__rt_entry_main &rArr; main &rArr; OLED_GLOW &rArr; OLED_FUN_CMD &rArr; I2C2_WRITE_CMD
+__rt_entry_main &rArr; main &rArr; OLED_DISPLAY_CLEAR &rArr; OLED_STARTING_PAGE &rArr; I2C2_WRITE_CMD
 <P>
 <H3>
 Functions with no stack information
@@ -174,8 +174,8 @@ Global Symbols
 <P><STRONG><a name="[61]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[26]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; OLED_GLOW &rArr; OLED_FUN_CMD &rArr; I2C2_WRITE_CMD
+<BR><BR>[Stack]<UL><LI>Max Depth = 64 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; OLED_DISPLAY_CLEAR &rArr; OLED_STARTING_PAGE &rArr; I2C2_WRITE_CMD
 </UL>
 <BR>[Calls]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -356,13 +356,13 @@ Global Symbols
 
 <P><STRONG><a name="[6b]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3c]"></a>GPIO_CONFIGURE</STRONG> (Thumb, 180 bytes, Stack size 28 bytes, gpio.o(.text.GPIO_CONFIGURE))
+<P><STRONG><a name="[3b]"></a>GPIO_CONFIGURE</STRONG> (Thumb, 180 bytes, Stack size 28 bytes, gpio.o(.text.GPIO_CONFIGURE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = GPIO_CONFIGURE
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3b]"></a>GPIO_RCC_CONFIGURE</STRONG> (Thumb, 28 bytes, Stack size 4 bytes, gpio.o(.text.GPIO_RCC_CONFIGURE))
+<P><STRONG><a name="[3a]"></a>GPIO_RCC_CONFIGURE</STRONG> (Thumb, 28 bytes, Stack size 4 bytes, gpio.o(.text.GPIO_RCC_CONFIGURE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = GPIO_RCC_CONFIGURE
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -371,28 +371,28 @@ Global Symbols
 <P><STRONG><a name="[32]"></a>I2C2_WRITE_CMD</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, i2c_2.o(.text.I2C2_WRITE_CMD))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = I2C2_WRITE_CMD
 </UL>
-<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ADDRESSING_CMD_DATA
+<BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_STARTING_PAGE
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SET_COURSOR
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DISPLAY_CLEAR
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ADDRESSING_CMD_DATA
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ADDRESSING_CMD
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_FUN_CMD
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_GLOW
-<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_STARTING_PAGE
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_CLEAR
 </UL>
 
 <P><STRONG><a name="[36]"></a>I2C2_WRITE_DATA</STRONG> (Thumb, 188 bytes, Stack size 8 bytes, i2c_2.o(.text.I2C2_WRITE_DATA))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = I2C2_WRITE_DATA
 </UL>
-<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_GLOW
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_CLEAR
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DISPLAY_CLEAR
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3e]"></a>I2C_2_CONFIGURE</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, i2c_2.o(.text.I2C_2_CONFIGURE))
+<P><STRONG><a name="[3d]"></a>I2C_2_CONFIGURE</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, i2c_2.o(.text.I2C_2_CONFIGURE))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = I2C_2_CONFIGURE
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3d]"></a>I2C_2_RCC_CONFIGURE</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2c_2.o(.text.I2C_2_RCC_CONFIGURE))
+<P><STRONG><a name="[3c]"></a>I2C_2_RCC_CONFIGURE</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, i2c_2.o(.text.I2C_2_RCC_CONFIGURE))
 <BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -412,12 +412,12 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[34]"></a>OLED_CLEAR</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, main.o(.text.OLED_CLEAR))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = OLED_CLEAR &rArr; OLED_STARTING_PAGE &rArr; I2C2_WRITE_CMD
+<P><STRONG><a name="[34]"></a>OLED_DISPLAY_CLEAR</STRONG> (Thumb, 98 bytes, Stack size 24 bytes, ssd1306.o(.text.OLED_DISPLAY_CLEAR))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = OLED_DISPLAY_CLEAR &rArr; OLED_STARTING_PAGE &rArr; I2C2_WRITE_CMD
 </UL>
-<BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_DATA
+<BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_STARTING_PAGE
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_CMD
-<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_STARTING_PAGE
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_DATA
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -428,17 +428,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_CMD
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_GLOW
 </UL>
 
-<P><STRONG><a name="[38]"></a>OLED_GLOW</STRONG> (Thumb, 110 bytes, Stack size 24 bytes, main.o(.text.OLED_GLOW))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = OLED_GLOW &rArr; OLED_FUN_CMD &rArr; I2C2_WRITE_CMD
+<P><STRONG><a name="[38]"></a>OLED_SET_COURSOR</STRONG> (Thumb, 86 bytes, Stack size 32 bytes, ssd1306.o(.text.OLED_SET_COURSOR))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = OLED_SET_COURSOR &rArr; I2C2_WRITE_CMD
 </UL>
-<BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_FUN_CMD
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_DATA
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_CMD
-<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_STARTING_PAGE
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_CMD
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -448,38 +443,37 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_CMD
 </UL>
-<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_GLOW
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_CLEAR
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DISPLAY_CLEAR
 </UL>
 
-<P><STRONG><a name="[3a]"></a>RCC_CONFIGURE</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, system_rcc.o(.text.RCC_CONFIGURE))
+<P><STRONG><a name="[39]"></a>RCC_CONFIGURE</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, system_rcc.o(.text.RCC_CONFIGURE))
 <BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[1d]"></a>SystemInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, system_stm32g0xx.o(.text.SystemInit))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32g030xx.o(.text)
 </UL>
-<P><STRONG><a name="[39]"></a>delay_ms</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, main.o(.text.delay_ms))
+<P><STRONG><a name="[3e]"></a>delay_ms</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, main.o(.text.delay_ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_GLOW
 </UL>
 
-<P><STRONG><a name="[27]"></a>main</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = main &rArr; OLED_GLOW &rArr; OLED_FUN_CMD &rArr; I2C2_WRITE_CMD
+<P><STRONG><a name="[27]"></a>main</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = main &rArr; OLED_DISPLAY_CLEAR &rArr; OLED_STARTING_PAGE &rArr; I2C2_WRITE_CMD
 </UL>
-<BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ADDRESSING_CMD_DATA
+<BR>[Calls]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C2_WRITE_DATA
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_SET_COURSOR
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_DISPLAY_CLEAR
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ADDRESSING_CMD_DATA
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ADDRESSING_CMD
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_2_CONFIGURE
-<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_2_RCC_CONFIGURE
-<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_CONFIGURE
-<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_RCC_CONFIGURE
-<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_CONFIGURE
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_FUN_CMD
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_GLOW
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_CLEAR
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_2_CONFIGURE
+<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_2_RCC_CONFIGURE
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_CONFIGURE
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_RCC_CONFIGURE
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_CONFIGURE
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
