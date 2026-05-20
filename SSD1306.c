@@ -53,8 +53,8 @@ void OLED_DISPLAY_CLEAR()
 		
 		for(uint8_t column = 0; column <128; column++)
 		{
-			I2C2_WRITE_DATA(0x00);			
-		}
+			I2C2_WRITE_DATA(0x00);
+		}		
 		
 	}
 }
