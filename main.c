@@ -4,19 +4,20 @@
 #include "I2C_2.h"
 #include "SSD1306.h"
 #include "Font.h"
+#include <stdio.h>
 
 
 void delay_ms(uint32_t ms)
 {
-    for(uint32_t i = 0; i < ms * 4000; i++);
+	for(uint32_t i = 0; i < ms * 4000; i++);
 }
-
-
-
 
 
 int main(void)
 {
+	char counter_buffer[50];
+	uint32_t counter = 0;
+	
     RCC_CONFIGURE();
 
     GPIO_RCC_CONFIGURE(GPIO_A);
@@ -47,14 +48,22 @@ int main(void)
     OLED_FUN_CMD(OLED_SET_DISPLAY_ON);
     delay_ms(10);
 		
-		
-
-
 
     while(1)
     {
-			OLED_SET_COURSOR(0,0);
-			OLED_PRINT("Hello World");
+			OLED_DISPLAY_CLEAR();
+
+			for(counter = 0; counter <1000; counter++)
+			{
+				OLED_SET_COURSOR(0,0);
+				sprintf(counter_buffer,"%u",counter);
+				
+				OLED_PRINT(counter_buffer);
+				
+				//delay_ms(10);
+				
+			}
+			counter = 0;
 
 
 
