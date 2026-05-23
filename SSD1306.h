@@ -1,6 +1,6 @@
-#ifndef SSD1306_H
+#ifndef SSD1306_H_
 
-#define SSD1306_H
+#define SSD1306_H_
 
 #include "stm32g030xx.h"
 

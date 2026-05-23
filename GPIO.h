@@ -1,7 +1,7 @@
 
-#ifndef GPIO_H
+#ifndef GPIO_H_
 
-#define GPIO_H
+#define GPIO_H_
 
 #include "stm32g030xx.h"
 
