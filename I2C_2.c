@@ -12,6 +12,7 @@
 
 /*-------------------I2C_2 RCC CONFIGURE START-----------------*/
 
+
 void I2C_2_RCC_CONFIGURE()
 
 {
@@ -308,6 +309,41 @@ void I2C2_WRITE_FONT(const uint8_t *I2C_FONT_DATA)
 	
 	I2C2->ICR  |= I2C_ICR_STOPCF;	
 
+}
+
+void I2C2_WRITE_IMAGE_PAGE(const uint8_t *page_data, uint8_t SIZE)
+{
+    while((I2C2->ISR & I2C_ISR_BUSY));
+
+    I2C2->CR2 = 0;
+
+    I2C2->CR2 &=~ I2C_CR2_ADD10_Msk;
+
+    I2C2->CR2 |= (0x3C << 1);
+
+    I2C2->CR2 &= ~I2C_CR2_RD_WRN_Msk;
+
+    I2C2->CR2 &=~ I2C_CR2_NBYTES_Msk;
+    I2C2->CR2 |= ((SIZE + 1) << I2C_CR2_NBYTES_Pos);
+
+    I2C2->CR2 |= I2C_CR2_AUTOEND;
+
+    I2C2->CR2 |= I2C_CR2_START;
+
+    while(!(I2C2->ISR & I2C_ISR_TXIS));
+
+    /* Control byte */
+    I2C2->TXDR = 0x40;
+
+    for(uint8_t i = 0; i < SIZE; i++)
+    {
+        while(!(I2C2->ISR & I2C_ISR_TXIS));
+        I2C2->TXDR = page_data[i];
+    }
+
+    while(!(I2C2->ISR & I2C_ISR_STOPF));
+
+    I2C2->ICR |= I2C_ICR_STOPCF;
 }
 
 /*-------------------I2C WRITE END--------------------------*/

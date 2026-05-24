@@ -2,6 +2,9 @@
 #include "I2C_2.h"
 #include "SSD1306.h"
 
+
+
+
 void OLED_FUN_CMD(OLED_FUN_CMD_X FUN_CMD_X)
 {
 	I2C2_WRITE_CMD(FUN_CMD_X);

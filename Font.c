@@ -119,6 +119,11 @@ const uint8_t ASCII_FONT[95][6] =
 	{0x08,0x04,0x08,0x10,0x08,0x00}  // ~
 };
 
+
+
+
+
+
 void OLED_PRINT(char *STR)
 {
 	while(*STR != '\0')
@@ -135,4 +140,28 @@ void OLED_PRINT_CHAR(char C)
         C = ' ';
     }
 	I2C2_WRITE_FONT(ASCII_FONT[C-32]);
+}
+
+
+void OLED_DISPLAY_IMAGE(const uint8_t *image,uint8_t COLUMN_POSITION,uint8_t page_y,uint8_t width,uint8_t height)
+{
+    uint8_t total_pages = height / 8;
+
+    for(uint8_t page = 0; page < total_pages; page++)
+    {
+        /* Select page */
+        I2C2_WRITE_CMD(0xB0 + page_y + page);
+
+        /* Set column */
+        I2C2_WRITE_CMD(0x00 | (COLUMN_POSITION & 0x0F));
+
+        I2C2_WRITE_CMD
+        (
+            0x10 |
+            ((COLUMN_POSITION >> 4) & 0x0F)
+        );
+
+        /* Send image data */
+        I2C2_WRITE_IMAGE_PAGE(&image[page * width],width);
+    }
 }
