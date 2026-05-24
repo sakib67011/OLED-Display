@@ -77,7 +77,7 @@
       <WinId>466</WinId>
       <ViewName>Source Browser</ViewName>
       <UserString>500</UserString>
-      <TableColWidths>300</TableColWidths>
+      <TableColWidths>166</TableColWidths>
     </View>
   </TreeListPane>
 
@@ -3613,9 +3613,9 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>.\main.c</Name>
-        <ColumnNumber>32</ColumnNumber>
-        <TopLine>94</TopLine>
-        <CurrentLine>115</CurrentLine>
+        <ColumnNumber>0</ColumnNumber>
+        <TopLine>1</TopLine>
+        <CurrentLine>121</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
